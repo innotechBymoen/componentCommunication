@@ -1,19 +1,33 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <Tweet author='Alex' @myCustomEvent='handleChildEvent'/>
+    <Tweet author='Not Alex' @myCustomEvent='handleChildEvent'/>
+    <Tweet author='The Best Version of Alex' @myCustomEvent='handleChildEvent'/>
+    <Footer :content="footerContent"/>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Tweet from "./components/Tweet.vue";
+import Footer from "./components/Footer.vue";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    HelloWorld
+    Tweet,
+    Footer
+  },
+  data : function() {
+    return {
+      footerContent: "Footer"
+    }
+  },
+  methods: {
+    handleChildEvent: function(emitData) {
+      this.footerContent = emitData;
+    }
   }
-}
+};
 </script>
 
 <style>
